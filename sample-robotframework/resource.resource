@@ -14,17 +14,17 @@ ${SEARCH_VALUE}             Zebrunner
 *** Keywords ***
 SETUP AND OPEN BROWSER
     [Documentation]     Setup and open browser
-    #############################################################################################
-    #${options} =                    EVALUATE            selenium.webdriver.[ChromeOptions(), EdgeOptions(), FirefoxOptions()]
-    #${options.platform_name} =      SET VARIABLE        linux[...]
-    #${options.browser_version} =    SET VARIABLE        109.0[108.0, 107.0]
-    #CALL METHOD     ${options}      set_capability      enableVideo     true[false]
-    #############################################################################################
-    #${browser_name} =       SET VARIABLE    ${options.default_capabilities.get("browserName")}
-    #RUN KEYWORD IF          '${browser_name}' == 'MicrosoftEdge'      ${browser_name} = SET VARIABLE      edge
+    ############################################################################################
+    ${options} =                    EVALUATE            selenium.webdriver.ChromeOptions()
+    ${options.platform_name} =      SET VARIABLE        linux
+    ${options.browser_version} =    SET VARIABLE        109.0
+    CALL METHOD     ${options}      set_capability      enableVideo     true
+    ############################################################################################
+    ${browser_name} =       SET VARIABLE    ${options.default_capabilities.get("browserName")}
+    RUN KEYWORD IF          '${browser_name}' == 'MicrosoftEdge'      ${browser_name} = SET VARIABLE      edge
 
     ${executor} =       GET ENVIRONMENT VARIABLE    ZEBRUNNER_SELENIUM_GRID     default=http://127.0.0.1:4444
-    OPEN BROWSER        browser=${browser_name}     remote_url=${executor}      #options=${options}
+    OPEN BROWSER        browser=${browser_name}     remote_url=${executor}      options=${options}
 
     MAXIMIZE BROWSER WINDOW
     SET BROWSER IMPLICIT WAIT    20
