@@ -31,7 +31,7 @@ Advanced_test
     ...    AND
     ...    TAKE A SCREENSHOT
 
-    INPUT TEXT              //input[@name='q']      Zebrunner
+    INPUT TEXT              //input[@name='q']/fail      Zebrunner
     TAKE A SCREENSHOT
     PRESS KEYS              None                    RETURN
     TAKE A SCREENSHOT
